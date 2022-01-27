@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Middle Earth</string>
+
+    <string name="menu_title_books">Books</string>
+    <string name="menu_title_movies">Movies</string>
+    <string name="menu_title_characters">Characters</string>
+    <string name="menu_title_quotes">Quotes</string>
+    <string name="menu_title_chapters">Chapters</string>
 </resources>
