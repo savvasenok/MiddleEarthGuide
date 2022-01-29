@@ -13,6 +13,8 @@ sealed class BooksViewHolder(view: View) : CoreViewHolder<BookUi>(view) {
         when (item) {
             is BookUi.Book -> bind(item)
             is BookUi.Error -> bind(item)
+            is BookUi.Loading -> {
+            }
         }
     }
 
@@ -38,4 +40,6 @@ sealed class BooksViewHolder(view: View) : CoreViewHolder<BookUi>(view) {
             binding.textViewBookError.text = item.errorText
         }
     }
+
+    class Loading(view: View) : BooksViewHolder(view)
 }

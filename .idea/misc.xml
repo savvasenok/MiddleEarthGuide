@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout/fragment_quotes.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/view_holder_book.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/view_holder_book_error.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/view_holder_book_loading.xml" value="0.33" />
         <entry key="app/src/main/res/menu/main_navigation.xml" value="0.35572916666666665" />
       </map>
     </option>
