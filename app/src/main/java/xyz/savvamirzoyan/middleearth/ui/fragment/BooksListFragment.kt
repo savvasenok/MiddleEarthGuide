@@ -4,17 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import xyz.savvamirzoyan.middleearth.core.Clicker
 import xyz.savvamirzoyan.middleearth.databinding.FragmentBooksListBinding
+import xyz.savvamirzoyan.middleearth.ui.App
+import xyz.savvamirzoyan.middleearth.ui.activity.MainActivity
 import xyz.savvamirzoyan.middleearth.ui.data.BookUi
+import xyz.savvamirzoyan.middleearth.ui.diffcallback.BookUiDiffCallback
 import xyz.savvamirzoyan.middleearth.ui.recyclerview.BooksRecyclerViewAdapter
+import xyz.savvamirzoyan.middleearth.ui.viewmodel.BooksListViewModel
 
 class BooksListFragment : Fragment() {
 
     private lateinit var binding: FragmentBooksListBinding
+    private lateinit var viewModel: BooksListViewModel
+    private lateinit var booksAdapter: BooksRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,18 +32,30 @@ class BooksListFragment : Fragment() {
     ): View {
 
         binding = FragmentBooksListBinding.inflate(inflater, container, false)
+        viewModel = ((activity as MainActivity).application as App).booksListVieModel
 
-        val adapter = BooksRecyclerViewAdapter(
+        booksAdapter = BooksRecyclerViewAdapter(
             object : Clicker<BookUi.Book> {
-                override fun onClick(item: BookUi.Book) {
-                    Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
-                }
-            }
+                override fun onClick(item: BookUi.Book) {}
+            },
+            BookUiDiffCallback()
         )
 
-        binding.recyclerViewBooks.adapter = adapter
+        binding.recyclerViewBooks.adapter = booksAdapter
         binding.recyclerViewBooks.layoutManager = LinearLayoutManager(context)
 
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                booksListStatusListener()
+            }
+        }
+
         return binding.root
+    }
+
+    private suspend fun booksListStatusListener() {
+        viewModel.booksListFlow.collect {
+            booksAdapter.update(it)
+        }
     }
 }

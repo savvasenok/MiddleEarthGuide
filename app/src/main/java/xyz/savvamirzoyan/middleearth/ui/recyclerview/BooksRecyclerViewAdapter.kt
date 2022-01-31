@@ -3,6 +3,7 @@ package xyz.savvamirzoyan.middleearth.ui.recyclerview
 import android.view.ViewGroup
 import xyz.savvamirzoyan.middleearth.R
 import xyz.savvamirzoyan.middleearth.core.Clicker
+import xyz.savvamirzoyan.middleearth.ui.core.CoreDiffCallback
 import xyz.savvamirzoyan.middleearth.ui.core.CoreRecyclerViewAdapter
 import xyz.savvamirzoyan.middleearth.ui.data.BookUi
 
@@ -11,8 +12,9 @@ private const val TYPE_ERROR = 1
 private const val TYPE_LOADING = 2
 
 class BooksRecyclerViewAdapter(
-    private val clickListener: Clicker<BookUi.Book>
-) : CoreRecyclerViewAdapter<BookUi, BooksViewHolder>() {
+    private val clickListener: Clicker<BookUi.Book>,
+    diffCallback: CoreDiffCallback<BookUi>
+) : CoreRecyclerViewAdapter<BookUi, BooksViewHolder>(diffCallback) {
     override fun getItemViewType(position: Int) = when (items[position]) {
         is BookUi.Book -> TYPE_BOOK
         is BookUi.Error -> TYPE_ERROR
