@@ -11,7 +11,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.serialization.ExperimentalSerializationApi
 import xyz.savvamirzoyan.middleearth.core.Clicker
+import xyz.savvamirzoyan.middleearth.core.Retry
 import xyz.savvamirzoyan.middleearth.databinding.FragmentBooksListBinding
 import xyz.savvamirzoyan.middleearth.ui.App
 import xyz.savvamirzoyan.middleearth.ui.activity.MainActivity
@@ -20,6 +22,7 @@ import xyz.savvamirzoyan.middleearth.ui.diffcallback.BookUiDiffCallback
 import xyz.savvamirzoyan.middleearth.ui.recyclerview.BooksRecyclerViewAdapter
 import xyz.savvamirzoyan.middleearth.ui.viewmodel.BooksListViewModel
 
+@ExperimentalSerializationApi
 class BooksListFragment : Fragment() {
 
     private lateinit var binding: FragmentBooksListBinding
@@ -34,9 +37,17 @@ class BooksListFragment : Fragment() {
         binding = FragmentBooksListBinding.inflate(inflater, container, false)
         viewModel = ((activity as MainActivity).application as App).booksListVieModel
 
+
         booksAdapter = BooksRecyclerViewAdapter(
             object : Clicker<BookUi.Book> {
-                override fun onClick(item: BookUi.Book) {}
+                override fun onClick(item: BookUi.Book) {
+                    viewModel.onBookClick(item)
+                }
+            },
+            object : Retry {
+                override fun onRetry() {
+                    viewModel.retry()
+                }
             },
             BookUiDiffCallback()
         )

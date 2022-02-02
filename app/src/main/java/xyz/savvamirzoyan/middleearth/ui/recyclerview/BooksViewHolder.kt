@@ -2,6 +2,7 @@ package xyz.savvamirzoyan.middleearth.ui.recyclerview
 
 import android.view.View
 import xyz.savvamirzoyan.middleearth.core.Clicker
+import xyz.savvamirzoyan.middleearth.core.Retry
 import xyz.savvamirzoyan.middleearth.databinding.ViewHolderBookBinding
 import xyz.savvamirzoyan.middleearth.databinding.ViewHolderBookErrorBinding
 import xyz.savvamirzoyan.middleearth.ui.core.CoreViewHolder
@@ -33,11 +34,15 @@ sealed class BooksViewHolder(view: View) : CoreViewHolder<BookUi>(view) {
         }
     }
 
-    class Error(view: View) : BooksViewHolder(view) {
+    class Error(
+        private val retryListener: Retry,
+        view: View
+    ) : BooksViewHolder(view) {
         private val binding = ViewHolderBookErrorBinding.bind(view)
 
         override fun bind(item: BookUi.Error) {
-            binding.textViewBookError.text = item.errorText
+            binding.textViewBookError.text = item.error
+            binding.buttonRetry.setOnClickListener { retryListener.onRetry() }
         }
     }
 

@@ -6,6 +6,7 @@
     <string name="menu_title_characters">Characters</string>
     <string name="menu_title_quotes">Quotes</string>
     <string name="menu_title_chapters">Chapters</string>
-    <string name="retry">Retry</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
+    <string name="error_network">No connection with the server\nConnect to the Internet and retry or try in a few minutes</string>
+    <string name="generic_error">Something bad happened\nTry restarting the app</string>
 </resources>

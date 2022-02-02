@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="xyz.savvamirzoyan.middleearth">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
@@ -9,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".ui.App"
-        android:theme="@style/Theme.MiddleEarth">
+        android:theme="@style/Theme.MiddleEarth"
+        tools:ignore="DataExtractionRules">
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">

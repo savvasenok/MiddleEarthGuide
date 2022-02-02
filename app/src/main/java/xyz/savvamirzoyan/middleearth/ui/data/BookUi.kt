@@ -1,7 +1,9 @@
 package xyz.savvamirzoyan.middleearth.ui.data
 
-sealed class BookUi {
-    data class Book(val title: String) : BookUi()
-    data class Error(val errorText: String) : BookUi()
+import xyz.savvamirzoyan.middleearth.core.Model
+
+sealed class BookUi : Model.Ui {
+    data class Book(val id: String, val title: String) : BookUi()
+    data class Error(val error: String) : BookUi()
     object Loading : BookUi()
 }
