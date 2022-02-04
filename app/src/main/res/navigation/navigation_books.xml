@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_books"
+    app:startDestination="@id/booksListFragment">
+
+    <fragment
+        android:id="@+id/booksListFragment"
+        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.BooksListFragment"
+        android:label="fragment_books_list"
+        tools:layout="@layout/fragment_books_list">
+        <action
+            android:id="@+id/toChaptersFragment"
+            app:destination="@id/chaptersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chaptersFragment"
+        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.ChaptersFragment"
+        android:label="fragment_chapters"
+        tools:layout="@layout/fragment_chapters">
+        <argument
+            android:name="bookId"
+            app:argType="string" />
+    </fragment>
+</navigation>

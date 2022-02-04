@@ -11,7 +11,9 @@ interface BooksDataToDomainMapper : Mapper<BookData, BookDomain> {
     fun map(e: ErrorData): ErrorDomain
 
     class Base : BooksDataToDomainMapper {
-        override fun map(model: BookData): BookDomain = BookDomain(model.id, model.title)
+        override fun map(model: BookData): BookDomain =
+            BookDomain(model.id, model.title, model.chaptersCount)
+
         override fun map(models: List<BookData>) = models.map { map(it) }
         override fun map(e: ErrorData): ErrorDomain = when (e) {
             is ErrorData.ApiError -> ErrorDomain.Network()

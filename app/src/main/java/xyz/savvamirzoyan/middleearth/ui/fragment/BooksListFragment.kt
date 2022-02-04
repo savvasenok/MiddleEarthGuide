@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -37,7 +38,6 @@ class BooksListFragment : Fragment() {
         binding = FragmentBooksListBinding.inflate(inflater, container, false)
         viewModel = ((activity as MainActivity).application as App).booksListVieModel
 
-
         booksAdapter = BooksRecyclerViewAdapter(
             object : Clicker<BookUi.Book> {
                 override fun onClick(item: BookUi.Book) {
@@ -60,6 +60,11 @@ class BooksListFragment : Fragment() {
                 booksListStatusListener()
             }
         }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                openChaptersListener()
+            }
+        }
 
         return binding.root
     }
@@ -67,6 +72,13 @@ class BooksListFragment : Fragment() {
     private suspend fun booksListStatusListener() {
         viewModel.booksListFlow.collect {
             booksAdapter.update(it)
+        }
+    }
+
+    private suspend fun openChaptersListener() {
+        viewModel.openChaptersFlow.collect { bookId ->
+            val action = BooksListFragmentDirections.toChaptersFragment(bookId)
+            Navigation.findNavController(binding.root).navigate(action)
         }
     }
 }

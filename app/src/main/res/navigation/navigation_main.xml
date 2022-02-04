@@ -1,33 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main.xml"
-    app:startDestination="@id/booksListFragment">
+    app:startDestination="@+id/navigation_books">
 
-    <fragment
-        android:id="@+id/booksListFragment"
-        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.BooksListFragment"
-        android:label="fragment_books_list"
-        tools:layout="@layout/fragment_books_list" />
-    <fragment
-        android:id="@+id/moviesFragment"
-        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.MoviesFragment"
-        android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
-    <fragment
-        android:id="@+id/charactersFragment"
-        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.CharactersFragment"
-        android:label="fragment_characters"
-        tools:layout="@layout/fragment_characters" />
-    <fragment
-        android:id="@+id/quotesFragment"
-        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.QuotesFragment"
-        android:label="fragment_quotes"
-        tools:layout="@layout/fragment_quotes" />
-    <fragment
-        android:id="@+id/chaptersFragment"
-        android:name="xyz.savvamirzoyan.middleearth.ui.fragment.ChaptersFragment"
-        android:label="fragment_chapters"
-        tools:layout="@layout/fragment_chapters" />
+    <include app:graph="@navigation/navigation_books" />
+    <include app:graph="@navigation/navigation_characters" />
+    <include app:graph="@navigation/navigation_quotes" />
+    <include app:graph="@navigation/navigation_movies" />
 </navigation>

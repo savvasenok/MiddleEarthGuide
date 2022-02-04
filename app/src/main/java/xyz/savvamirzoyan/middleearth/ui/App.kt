@@ -7,7 +7,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import xyz.savvamirzoyan.middleearth.data.mapper.BooksCloudToDataMapper
+import xyz.savvamirzoyan.middleearth.data.mapper.BooksAndChaptersCountCloudToDataMapper
 import xyz.savvamirzoyan.middleearth.data.repository.BooksRepository
 import xyz.savvamirzoyan.middleearth.data.source.BooksCloudDataSource
 import xyz.savvamirzoyan.middleearth.domain.interactor.BooksListInteractor
@@ -44,7 +44,7 @@ class App : Application() {
         val resourceManager = ResourceManager.Base(applicationContext)
 
         // Mapper
-        val booksCloudToDataMapper = BooksCloudToDataMapper.Base()
+        val booksCloudToDataMapper = BooksAndChaptersCountCloudToDataMapper.Base()
         val booksDataToDomainMapper = BooksDataToDomainMapper.Base()
         val booksDomainToUiMapper = BooksDomainToUiMapper.Base(resourceManager)
 

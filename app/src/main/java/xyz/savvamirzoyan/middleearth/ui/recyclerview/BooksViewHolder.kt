@@ -30,6 +30,7 @@ sealed class BooksViewHolder(view: View) : CoreViewHolder<BookUi>(view) {
 
         override fun bind(item: BookUi.Book) {
             binding.root.setOnClickListener { clicker.onClick(item) }
+            binding.textViewBookChapters.text = item.chaptersCount
             binding.textViewBookTitle.text = item.title
         }
     }

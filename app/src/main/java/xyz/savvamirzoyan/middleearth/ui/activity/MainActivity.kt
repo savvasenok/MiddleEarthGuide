@@ -15,18 +15,14 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.main_nav_host_fragment)
     }
 
+    private val bottomNavigationView by lazy {
+        findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        findViewById<BottomNavigationView>(R.id.bottom_navigation_view).setupWithNavController(
-            navController
-        )
-
-//        NavigationUI.setupWithNavController(
-//            findViewById<BottomNavigationView>(R.id.bottom_navigation_view),
-//            navController
-//        )
+        bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -18,9 +18,4 @@
         android:id="@+id/quotesFragment"
         android:icon="@drawable/ic_round_message_24"
         android:title="@string/menu_title_quotes" />
-
-    <item
-        android:id="@+id/chaptersFragment"
-        android:icon="@drawable/ic_baseline_text_snippet_24"
-        android:title="@string/menu_title_chapters" />
 </menu>

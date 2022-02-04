@@ -12,7 +12,11 @@ interface BooksDomainToUiMapper : Mapper<BookDomain, BookUi> {
     fun map(error: ErrorDomain): BookUi
 
     class Base(private val resourceManager: ResourceManager) : BooksDomainToUiMapper {
-        override fun map(model: BookDomain): BookUi = BookUi.Book(model.id, model.title)
+        override fun map(model: BookDomain): BookUi = BookUi.Book(
+            model.id,
+            model.title,
+            resourceManager.getString(R.string.chapters, model.chaptersCount)
+        )
 
         override fun map(error: ErrorDomain): BookUi = when (error) {
             is ErrorDomain.Network -> BookUi.Error(resourceManager.getString(R.string.error_network))
