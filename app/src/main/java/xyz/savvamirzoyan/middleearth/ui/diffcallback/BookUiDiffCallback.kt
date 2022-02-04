@@ -11,7 +11,7 @@ class BookUiDiffCallback : CoreDiffCallback<BookUi>(
     },
     { bookUi1, bookUi2 ->
         if (bookUi1 is BookUi.Book && bookUi2 is BookUi.Book) {
-            bookUi1.title == bookUi2.title
+            bookUi1.id == bookUi2.id
         } else false
     }
 )

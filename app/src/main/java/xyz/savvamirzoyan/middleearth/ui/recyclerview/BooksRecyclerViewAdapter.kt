@@ -25,12 +25,15 @@ class BooksRecyclerViewAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         return when (viewType) {
-            0 -> BooksViewHolder.Book(clickListener, R.layout.view_holder_book.makeView(parent))
-            1 -> BooksViewHolder.Error(
-                retryListener,
-                R.layout.view_holder_book_error.makeView(parent)
+            TYPE_BOOK -> BooksViewHolder.Book(
+                clickListener,
+                R.layout.view_holder_book.makeView(parent)
             )
-            else -> BooksViewHolder.Loading(R.layout.view_holder_book_loading.makeView(parent))
+            TYPE_ERROR -> BooksViewHolder.Error(
+                retryListener,
+                R.layout.view_holder_error.makeView(parent)
+            )
+            else -> BooksViewHolder.Loading(R.layout.view_holder_loading.makeView(parent))
         }
     }
 }

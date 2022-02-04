@@ -3,5 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:listitem="@android:layout/simple_expandable_list_item_1"
-    tools:context=".ui.fragment.ChaptersFragment" />
+    android:clipToPadding="false"
+    android:paddingBottom="128dp"
+    tools:context=".ui.fragment.ChaptersFragment"
+    tools:listitem="@layout/view_holder_chapter" />
